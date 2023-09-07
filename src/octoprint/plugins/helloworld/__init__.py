@@ -7,18 +7,6 @@ class HelloWorldPlugin(octoprint.plugin.StartupPlugin,
     
     def on_after_startup(self):
         self._logger.info("!!!!!!!!!!!!!!!!!! (more: %s) !!!!!!!!!!!!!!!!!!" % self._settings.get(["url"]))
-        # try:
-        #     service_done = octoprint.plugin.PrintDone()
-        #     service_done.run() 
-        #     service_error = octoprint.plugin.PrintError()
-        #     service_error.run() 
-        # except Exception as err:
-        #     self._logger.info("*************************")
-        #     self._logger.info("*************************")
-        #     self._logger.info(err)
-        #     self._logger.info("*************************")
-        #     self._logger.info("*************************")
-             
         return super().on_after_startup()
     
     def get_settings_defaults(self):
