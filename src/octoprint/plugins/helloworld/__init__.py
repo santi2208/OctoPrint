@@ -1,7 +1,4 @@
 import octoprint.plugin
-# from print_done_yeelight import PrintDone
-# import octoprint.plugins.helloworld.libs
-
 
 class HelloWorldPlugin(octoprint.plugin.StartupPlugin,
                        octoprint.plugin.TemplatePlugin,
@@ -9,27 +6,19 @@ class HelloWorldPlugin(octoprint.plugin.StartupPlugin,
                        octoprint.plugin.AssetPlugin):
     
     def on_after_startup(self):
-        self._logger.info("!!!!!!!!!!!!!!!!!! (more: %s)" % self._settings.get(["url"]))
-        self._logger.info("!!!!!!!!!!!!!!!!!! (more: %s)" % self._settings.get(["url"]))
-        try:
-            self._logger.info("-----------------------------")
-            self._logger.info("-----------------------------")
-            service = octoprint.plugin.PrintDone()
-            service.run() 
-            self._logger.info(service)
-            self._logger.info("-----------------------------")
-            self._logger.info("-----------------------------")
-            # self.run()
-        except Exception as err:
-            self._logger.info("*************************")
-            self._logger.info("*************************")
-            self._logger.info(err)
-            self._logger.info("*************************")
-            self._logger.info("*************************")
+        self._logger.info("!!!!!!!!!!!!!!!!!! (more: %s) !!!!!!!!!!!!!!!!!!" % self._settings.get(["url"]))
+        # try:
+        #     service_done = octoprint.plugin.PrintDone()
+        #     service_done.run() 
+        #     service_error = octoprint.plugin.PrintError()
+        #     service_error.run() 
+        # except Exception as err:
+        #     self._logger.info("*************************")
+        #     self._logger.info("*************************")
+        #     self._logger.info(err)
+        #     self._logger.info("*************************")
+        #     self._logger.info("*************************")
              
-        # print_done = PrintDone() # PrintDone().run()
-        #octoprint.plugins.helloworld.libs
-        #self._logger.info("!!!!!!PrintDone!!!")
         return super().on_after_startup()
     
     def get_settings_defaults(self):

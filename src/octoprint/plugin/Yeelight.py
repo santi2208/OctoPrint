@@ -2,6 +2,8 @@ from yeelight import *
 from yeelight.transitions import *
 from yeelight import Flow
 from yeelight import Bulb
+import time
+
 class Device(object):
     def __init__(self, ip, name, id):
         self.Id = id
@@ -158,3 +160,55 @@ class Yeelight(object):
     def GetPropByName(self, name):
         for disp in self.Devices:
             print(disp.Instance.send_command("get_prop", params=[name]))
+
+class PrintDone(object):
+    def __init__(self):
+        self.Service = Yeelight()
+        self.Service.SetDevice("192.168.0.4", "Bed bulb", 1)
+        self.Service.SetDevice("192.168.0.7", "Kitchen bulb", 2)
+    
+    def run(self):
+        sleepTime = 2
+        self.Service.GetProperties()
+
+        self.Service.TurnOnEverything()
+        time.sleep(sleepTime)
+
+        self.Service.SetBrightness(100, id = 1)
+        self.Service.SetBrightness(100, id = 2)
+        time.sleep(sleepTime)
+
+        self.Service.StartFlow(flowId = 5, id = 2)
+        self.Service.StartFlow(flowId = 5, id = 1)
+        time.sleep(sleepTime * 5)
+
+        self.Service.StopFlowEverything()
+        time.sleep(sleepTime)
+
+        self.Service.WhiteAll()
+
+class PrintError(object):
+    def __init__(self):
+        self.Service = Yeelight()
+        self.Service.SetDevice("192.168.0.4", "Bed bulb", 1)
+        self.Service.SetDevice("192.168.0.7", "Kitchen bulb", 2)
+    
+    def run(self):
+        sleepTime = 2
+        self.Service.GetProperties()
+
+        self.Service.TurnOnEverything()
+        time.sleep(sleepTime)
+
+        self.Service.SetBrightness(100, id = 1)
+        self.Service.SetBrightness(100, id = 2)
+        time.sleep(sleepTime)
+
+        self.Service.StartFlow(flowId = 4, id = 2)
+        self.Service.StartFlow(flowId = 4, id = 1)
+        time.sleep(sleepTime * 5)
+
+        self.Service.StopFlowEverything()
+        time.sleep(sleepTime)
+
+        self.Service.WhiteAll()

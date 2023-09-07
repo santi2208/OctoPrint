@@ -22,6 +22,7 @@ import os
 from octoprint.plugin.core import Plugin, PluginInfo, PluginManager  # noqa: F401
 from octoprint.plugin.types import *  # noqa: F401,F403 ## used by multiple other modules
 from octoprint.plugin.types import OctoPrintPlugin, SettingsPlugin
+from octoprint.plugin.Yeelight import *
 from octoprint.settings import settings as s
 from octoprint.util import deprecated
 
