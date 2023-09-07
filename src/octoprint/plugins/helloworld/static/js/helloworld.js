@@ -20,10 +20,14 @@ $(function() {
         // gets called _after_ the settings have been retrieved from the OctoPrint backend and thus
         // the SettingsViewModel been properly populated.
         self.onBeforeBinding = function() {
-            debugger;
+            console.log("!!!!!!!!!!!!!!!1self.onBeforeBinding");
             self.newUrl(self.settings.settings.plugins.helloworld.url());
-            // self.newUrl("https://en.wikipedia.org/wiki/%22Hello,_World!%22_program");
+            self.currentUrl(self.settings.settings.plugins.helloworld.url());
             self.goToUrl();
+        }
+
+        self.setCurrentUrl = function(obj, event){
+            self.newUrl(self.currentUrl());
         }
     }
 
@@ -39,6 +43,6 @@ $(function() {
         ["settingsViewModel"],
 
         // Finally, this is the list of selectors for all elements we want this view model to be bound to.
-        ["#tab_plugin_helloworld","#settings_plugin_helloworld_settings"]
+        ["#tab_plugin_helloworld","#settings_plugin_helloworld_settings","#navbar_plugin_helloworld_wikipedia_link"]
     ]);
 });
