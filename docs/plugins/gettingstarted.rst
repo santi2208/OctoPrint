@@ -155,25 +155,25 @@ Then we can use the ``octoprint dev plugin:new`` command [#f1]_ to generate a ne
    Receiving objects: 100% (101/101), 53.69 KiB, done.
    Resolving deltas: 100% (35/35), done.
    plugin_package [octoprint_helloworld]:
-   plugin_name [OctoPrint-Helloworld]:
-   repo_name [OctoPrint-Helloworld]:
+   plugin_name [helloworld]:
+   repo_name [helloworld]:
    full_name [You]: Your Name
    email [you@example.com]: you@somewhere.net
    github_username [you]: yourGithubName
    plugin_version [0.1.0]: 1.0.0
    plugin_description [TODO]: A quick "Hello World" example plugin for OctoPrint
    plugin_license [AGPLv3]:
-   plugin_homepage [https://github.com/yourGithubName/OctoPrint-Helloworld]:
-   plugin_source [https://github.com/yourGithubName/OctoPrint-Helloworld]:
-   plugin_installurl [https://github.com/yourGithubName/OctoPrint-Helloworld/archive/master.zip]:
-   (venv) $ cd OctoPrint-HelloWorld
+   plugin_homepage [https://github.com/yourGithubName/helloworld]:
+   plugin_source [https://github.com/yourGithubName/helloworld]:
+   plugin_installurl [https://github.com/yourGithubName/helloworld/archive/master.zip]:
+   (venv) $ cd helloworld
 
 .. note::
 
    If ``octoprint dev plugin:new`` isn't recognized as a command (and also doesn't show up in the output of
    ``octoprint --help``, make sure you installed cookiecutter into the same python environment as OctoPrint.
 
-This will create a project structure in the ``OctoPrint-HelloWorld`` folder we just changed to that looks like this::
+This will create a project structure in the ``helloworld`` folder we just changed to that looks like this::
 
    extras/
        github/
@@ -231,12 +231,12 @@ configuration parameters for you:
 
    plugin_identifier = "helloworld"
    plugin_package = "octoprint_helloworld"
-   plugin_name = "OctoPrint-Helloworld"
+   plugin_name = "helloworld"
    plugin_version = "1.0.0"
    plugin_description = """A quick "Hello World" example plugin for OctoPrint"""
    plugin_author = "Your Name"
    plugin_author_email = "you@somewhere.net"
-   plugin_url = "https://github.com/yourGithubName/OctoPrint-Helloworld"
+   plugin_url = "https://github.com/yourGithubName/helloworld"
    plugin_license = "AGPLv3"
 
 Now all that's left to do is to move our ``helloworld.py`` into the ``octoprint_helloworld`` folder and renaming it to
@@ -253,7 +253,7 @@ to your OctoPrint installation::
    running egg_info
    creating OctoPrint_HelloWorld.egg-info
    [...]
-   Finished processing dependencies for OctoPrint-HelloWorld==1.0.0
+   Finished processing dependencies for helloworld==1.0.0
 
 Restart OctoPrint. Your plugin should still be properly discovered and the log line should be printed::
 
@@ -263,7 +263,7 @@ Restart OctoPrint. Your plugin should still be properly discovered and the log l
    [...]
    2015-01-27 13:43:34,818 - octoprint.plugin.core - INFO - 3 plugin(s) registered with the system:
    [...]
-   | Hello World (1.0.0) = /home/pi/devel/OctoPrint-HelloWorld/octoprint_helloworld
+   | Hello World (1.0.0) = /home/pi/devel/helloworld/octoprint_helloworld
    [...]
    2015-01-27 13:43:38,997 - octoprint.plugins.helloworld - INFO - Hello World!
 
@@ -282,7 +282,7 @@ of information now defined twice:
 .. code-block:: python
    :caption: setup.py
 
-   plugin_name = "OctoPrint-HelloWorld"
+   plugin_name = "helloworld"
    plugin_version = "1.0.0"
    plugin_description = "A quick \"Hello World\" example plugin for OctoPrint"
 
@@ -305,11 +305,11 @@ and restart OctoPrint::
 
    2015-01-27 13:46:33,786 - octoprint.plugin.core - INFO - 3 plugin(s) registered with the system:
    [...]
-   | OctoPrint-HelloWorld (1.0.0) = /home/pi/devel/OctoPrint-HelloWorld/octoprint_helloworld
+   | helloworld (1.0.0) = /home/pi/devel/helloworld/octoprint_helloworld
    [...]
 
 Our "Hello World" Plugin still gets detected fine, but it's now listed under the same name it's installed under,
-"OctoPrint-HelloWorld". That's a bit redundant and squashed, so we'll override that bit via ``__plugin_name__`` again:
+"helloworld". That's a bit redundant and squashed, so we'll override that bit via ``__plugin_name__`` again:
 
 .. code-block:: python
    :emphasize-lines: 7
@@ -329,7 +329,7 @@ Restart OctoPrint again::
 
    2015-01-27 13:48:54,122 - octoprint.plugin.core - INFO - 3 plugin(s) registered with the system:
    [...]
-   | Hello World (1.0.0) = /home/pi/OctoPrint-HelloWorld/octoprint_helloworld
+   | Hello World (1.0.0) = /home/pi/helloworld/octoprint_helloworld
    [...]
 
 Much better! You can override pretty much all of the metadata defined within ``setup.py`` from within your Plugin itself --
@@ -339,7 +339,7 @@ overrides.
 Following the README of the `Plugin Skeleton <https://github.com/OctoPrint/OctoPrint-PluginSkeleton>`_ you could now
 already publish your plugin on Github and it would be directly installable by others using pip::
 
-   (venv) $ pip install https://github.com/yourGithubName/OctoPrint-HelloWorld/archive/master.zip
+   (venv) $ pip install https://github.com/yourGithubName/helloworld/archive/master.zip
 
 But let's add some more features instead.
 
